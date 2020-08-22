@@ -2,10 +2,10 @@
 1. Clone repository
 2. Create a docker network `docker network create von_von` (If not already created)
 3. Run `docker-compose up`, it will serve:
-    * agent1.localhost
-    * agent1.swagger.localhost (OPEN API)
-    * agent2.localhost
-    * agent2.swagger.localhost (OPEN API)
+    * agent1.localhost (Agent1 service endpoint)
+    * agent1.swagger.localhost (Administration API(s) with swagger UI)
+    * agent2.localhost (Agent2 service endpoint)
+    * agent2.swagger.localhost (Administration API(s) with swagger UI)
     * agent1.webhook (For capturing webhook events)
     * agent2.webhook (For capturing webhook events)
 
