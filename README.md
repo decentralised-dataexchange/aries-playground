@@ -18,3 +18,11 @@ A webhook interceptor is provided to debug the webhook events. It can be accesse
 
 1. `docker exec -it agent1.webhook tail -f demo.log` - For viewing webhook events for agent1
 2. `docker exec -it agent2.webhook tail -f demo.log` - For viewing webhook events for agent2
+
+#### Configuring the agent startup
+
+The startup.sh file inside cloud-agent folder contains the `aca-py` startup command. You can modify it according to your development needs.
+
+#### Todo
+
+1. Providing a web interface for webhook event interceptor

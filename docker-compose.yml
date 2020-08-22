@@ -16,7 +16,7 @@ services:
     container_name: agent1.localhost
     environment:
       AGENT_NAME: Test-Facility
-      ACAPY_ENDPOINT: https://agent1.igrant.io
+      ACAPY_ENDPOINT: http://agent1.localhost
       GENESIS_URL: https://indy.igrant.io/genesis
       WEBHOOK_URL: http://agent1.webhook:8080
     volumes:
@@ -38,7 +38,7 @@ services:
     container_name: agent2.localhost
     environment:
       AGENT_NAME: Data4Life-User
-      ACAPY_ENDPOINT: https://agent2.igrant.io
+      ACAPY_ENDPOINT: http://agent2.localhost
       GENESIS_URL: https://indy.igrant.io/genesis
       WEBHOOK_URL: http://agent2.webhook:8080
     volumes:
