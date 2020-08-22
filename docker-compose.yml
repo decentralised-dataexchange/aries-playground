@@ -1,0 +1,59 @@
+version: '3'
+services:
+  nginx:
+    image: nginx
+    command: /bin/bash -c "envsubst \"`env | awk -F = '{printf \" $$%s\", $$1}'`\" < /etc/nginx/conf.d/acapy.template > /etc/nginx/conf.d/acapy.conf && exec nginx -g 'daemon off;'"
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - von_von
+
+  agent1.localhost:
+    image: georgejpadayatti/aries-cloudagent:0.5.3
+    command: /bin/bash -c "./startup.sh"
+    container_name: agent1.localhost
+    environment:
+      AGENT_NAME: Test-Facility
+      ACAPY_ENDPOINT: https://agent1.igrant.io
+      GENESIS_URL: https://indy.igrant.io/genesis
+      WEBHOOK_URL: http://agent1.webhook:8080
+    volumes:
+      - ./cloud-agent/startup.sh:/home/indy/startup.sh
+    networks:
+      - von_von
+
+  agent1.webhook:
+    image: georgejpadayatti/aries-webhook-interceptor:0.1
+    container_name: agent1.webhook
+    ports:
+      - 8081:8080
+    networks:
+      - von_von
+
+  agent2.localhost:
+    image: georgejpadayatti/aries-cloudagent:0.5.3
+    command: /bin/bash -c "./startup.sh"
+    container_name: agent2.localhost
+    environment:
+      AGENT_NAME: Data4Life-User
+      ACAPY_ENDPOINT: https://agent2.igrant.io
+      GENESIS_URL: https://indy.igrant.io/genesis
+      WEBHOOK_URL: http://agent2.webhook:8080
+    volumes:
+      - ./cloud-agent/startup.sh:/home/indy/startup.sh
+    networks:
+      - von_von
+
+  agent2.webhook:
+    image: georgejpadayatti/aries-webhook-interceptor:0.1
+    container_name: agent2.webhook
+    ports:
+      - 8082:8080
+    networks:
+      - von_von
+
+networks:
+  von_von:
+    external: true
