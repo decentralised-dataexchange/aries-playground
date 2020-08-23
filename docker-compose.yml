@@ -15,7 +15,7 @@ services:
     command: /bin/bash -c "./startup.sh"
     container_name: agent1.localhost
     environment:
-      AGENT_NAME: Test-Facility
+      AGENT_NAME: Test-Center
       ACAPY_ENDPOINT: http://agent1.localhost
       GENESIS_URL: https://indy.igrant.io/genesis
       WEBHOOK_URL: http://agent1.webhook:8080
