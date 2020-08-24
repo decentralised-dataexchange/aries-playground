@@ -57,3 +57,33 @@ server {
         add_header 'Access-Control-Allow-Methods' 'GET,POST,OPTIONS,PUT,DELETE,PATCH';
     }
 }
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name agent3.localhost;
+
+    location / {
+        proxy_pass http://agent3.localhost;
+
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Credentials' 'true';
+        add_header 'Access-Control-Allow-Headers' '*';
+        add_header 'Access-Control-Allow-Methods' 'GET,POST,OPTIONS,PUT,DELETE,PATCH';
+    }
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name agent3.swagger.localhost;
+
+    location / {
+        proxy_pass http://agent3.localhost:8001;
+
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Credentials' 'true';
+        add_header 'Access-Control-Allow-Headers' '*';
+        add_header 'Access-Control-Allow-Methods' 'GET,POST,OPTIONS,PUT,DELETE,PATCH';
+    }
+}
