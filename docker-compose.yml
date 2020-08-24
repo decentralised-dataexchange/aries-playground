@@ -54,6 +54,28 @@ services:
     networks:
       - von_von
 
+  agent3.localhost:
+    image: georgejpadayatti/aries-cloudagent:0.5.3
+    command: /bin/bash -c "./startup.sh"
+    container_name: agent3.localhost
+    environment:
+      AGENT_NAME: Travel-Company
+      ACAPY_ENDPOINT: http://agent3.localhost
+      GENESIS_URL: https://indy.igrant.io/genesis
+      WEBHOOK_URL: http://agent3.webhook:8080
+    volumes:
+      - ./cloud-agent/startup.sh:/home/indy/startup.sh
+    networks:
+      - von_von
+    
+  agent3.webhook:
+    image: georgejpadayatti/aries-webhook-interceptor:0.1
+    container_name: agent3.webhook
+    ports:
+      - 8081:8080
+    networks:
+      - von_von
+
 networks:
   von_von:
     external: true
