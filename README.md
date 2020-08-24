@@ -6,8 +6,10 @@
     * agent1.swagger.localhost (Administration API(s) with swagger UI)
     * agent2.localhost (Agent2 service endpoint)
     * agent2.swagger.localhost (Administration API(s) with swagger UI)
+    * agent3.swagger.localhost (Administration API(s) with swagger UI)
     * agent1.webhook (For capturing webhook events)
     * agent2.webhook (For capturing webhook events)
+    * agent3.webhook (For capturing webhook events)
 
 *Notes* : By default the agents are pointed to indy ledger hosted at https://indy.igrant.io, 
 You can always change this to your ledger of choice by updating *GENESIS_URL* environment variable in docker-compose.yml file
@@ -18,6 +20,7 @@ A webhook interceptor is provided to debug the webhook events. It can be accesse
 
 1. `docker exec -it agent1.webhook tail -f demo.log` - For viewing webhook events for agent1
 2. `docker exec -it agent2.webhook tail -f demo.log` - For viewing webhook events for agent2
+3. `docker exec -it agent2.webhook tail -f demo.log` - For viewing webhook events for agent2
 
 #### Configuring the agent startup
 
