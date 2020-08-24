@@ -72,7 +72,7 @@ services:
     image: georgejpadayatti/aries-webhook-interceptor:0.1
     container_name: agent3.webhook
     ports:
-      - 8081:8080
+      - 8083:8080
     networks:
       - von_von
 
