@@ -24,7 +24,7 @@ A webhook interceptor is provided to debug the webhook events. It can be accesse
 2. `docker exec -it agent2.webhook tail -f demo.log` - For viewing webhook events for agent2
 3. `docker exec -it agent3.webhook tail -f demo.log` - For viewing webhook events for agent3
 
-Please refer the [user guide executing on the credential issue and verification](https://github.com/decentralised-dataexchange/aries-playground/blob/credential-issue-and-verification-ug/credential-issue-and-verification-api-user-guide.md) for the above reference system.
+Please refer the [user guide executing on the credential issue and verification](hhttps://github.com/decentralised-dataexchange/aries-playground/blob/master/credential-issue-and-verification-api-user-guide.md) for the above reference system.
 
 #### Configuring the agent startup
 
