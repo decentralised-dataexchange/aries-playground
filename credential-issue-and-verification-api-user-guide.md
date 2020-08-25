@@ -4,10 +4,9 @@ This describes the API call flows during a verified data exchange process using 
 The indy network is up and running at https://indy.igrant.io/. The aries agents are connected to this network and configured locally as described [here](https://github.com/decentralised-dataexchange/aries-playground/blob/master/README.md). Executing the sequence of operations described creates the reference system described [below](#Reference sytem).
 
 # Reference system
-In our reference implementation, we have the individual (Alice) holding her health data in her wallet app issued by a health test center. This health data could be used by Alice to prove her health status to a travel company. The legal entity ensures that the test center follows the schema and governance. 
+In our reference implementation, we have the individual (Alice) holding her health data in her wallet app (Data4Life) issued by a Health Test Center. This health data could be used by Alice to prove her health status to a travel company. The legal entity ensures that the test center follows the schema and governance. 
 
 ![](reference-solution.png)
-
 Once the reference system is up and running you can start 3 terminals and monitor their logs by executing the docker container logs given below:
 
 | Agent  | Swagger API endpoint admin UI | 
