@@ -58,7 +58,7 @@ Here, the Test Center and Data4Life-User agents establishes connection with each
 	       "recipientKeys": [
 	           "7eCdJgj5r5ZjGYqVJYGTjdjFqxNnP3oWxYseagPoB1gg"
 	        ],
-	       "label": "Travel-Company"
+	       "label": "Test-Center"
 	     },
 	     "invitation_url": "http://agent3.localhost?c_i=eyJAdHlwZSI6ICJkaWQ6c292OkJ6Q2JzTlloTXJqSGlxWkRUVUFTSGc7c3BlYy9jb25uZWN0aW9ucy8xLjAvaW52aXRhdGlvbiIsICJAaWQiOiAiOTAzZmM2ODUtMDQ2My00ZjkyLTkzZmYtNDNkYmRiZmIxMjk3IiwgInNlcnZpY2VFbmRwb2ludCI6ICJodHRwOi8vYWdlbnQzLmxvY2FsaG9zdCIsICJyZWNpcGllbnRLZXlzIjogWyI3ZUNkSmdqNXI1WmpHWXFWSllHVGpkakZxeE5uUDNvV3hZc2VhZ1BvQjFnZyJdLCAibGFiZWwiOiAiVHJhdmVsLUNvbXBhbnkifQ=="
 	    }
@@ -75,7 +75,7 @@ Here, the Test Center and Data4Life-User agents establishes connection with each
 	      "recipientKeys": [
 	           "7eCdJgj5r5ZjGYqVJYGTjdjFqxNnP3oWxYseagPoB1gg"
 	        ],
-	      "label": "Travel-Company"
+	      "label": "Test-Center"
 	  	}`
 
 3. Accept a stored connection invitation by Data4Life-user
@@ -97,7 +97,7 @@ Here, a credential is issued by the Test Center based on a standard scehma earli
 	This generates the DID and verification key which now is registered 
 	![](indy-screenshot.png)
 
-2. Repeat step 1 to create DID for the Data4Life-User and publish it to the ledger to make it public. 
+2. Repeat step 1 to create DID for the Data4Life-User, but DO NOT publish this to ledger as it shall remain private. 
 
 3. Now, based on the schema, Test Center creates a credential definition to the ledger.
 	
