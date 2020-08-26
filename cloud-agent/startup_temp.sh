@@ -1,0 +1,12 @@
+aca-py start \
+    -it http 0.0.0.0 80 \
+    -ot http \
+    -e $ACAPY_ENDPOINT \
+    --label $AGENT_NAME \
+    --admin 0.0.0.0 8001 \
+    --admin-insecure-mode \
+    --auto-accept-requests --auto-ping-connection \
+    --genesis-url $GENESIS_URL \
+    --wallet-type indy \
+    --wallet-name $AGENT_NAME \
+    --webhook-url $WEBHOOK_URL
