@@ -12,7 +12,7 @@
     * agent2.webhook (For capturing webhook events)
     * agent3.webhook (For capturing webhook events)
 
-*Notes* : By default the agents are pointed to indy ledger hosted at https://indy.igrant.io, 
+*Notes* : By default the agents are pointed to indy ledger hosted at https://indy.igrant.io 
 
 You can always change this to your ledger of choice by updating *GENESIS_URL* environment variable in docker-compose.yml file
 
