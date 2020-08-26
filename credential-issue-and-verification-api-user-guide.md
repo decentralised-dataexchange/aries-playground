@@ -19,13 +19,14 @@ In your browser you can start three tabs to execute the APIs using swagger.
 
 | Agent  | Swagger API endpoint admin UI | 
 | ------------- | ------------- | 
-| Test Center | [agent1.swagger.localhost](agent1.swagger.localhost) | 
-| Alice (Data4Life User) | [agent2.swagger.localhost](agent2.swagger.localhost) | 
-| Travel Company | [agent3.swagger.localhost](agent3.swagger.localhost) | 
+| Test Center | [agent1.swagger.localhost](http://agent1.swagger.localhost) | 
+| Alice (Data4Life User) | [agent2.swagger.localhost](http://agent2.swagger.localhost) | 
+| Travel Company | [agent3.swagger.localhost](http://agent3.swagger.localhost) | 
 
 # Schema definition by a legal entity
-On [Test Center Agent](agent1.swagger.localhost), you can execute the schema definiton API to register the schema in the ledger. Ideally this is defined by a legal entity or a standardisation body.
-
+On [Test Center Agent](http://agent1.swagger.localhost), you can execute the schema definiton API to register the schema in the ledger. Ideally this is defined by a legal entity or a standardisation body.  
+To define schema first you have to create a public DID.  
+To create public DID follow step 1 of  [Credenial issuance by the issuer (Test Center)](#credenial-issuance-by-the-issuer-test-center).  
 Sends a schema to the ledger with the API `POST: ​/schemas` with the json body as given:
 	    
     {
@@ -91,12 +92,12 @@ After the secured connection is established between the two agents, the Test Cen
 Here, a credential is issued by the Test Center based on a standard scehma earlier defined by the legal entity.  
 
 1. Create a local DID for the test center and make it public by publishing it to the ledger 
+	1. Call `POST ​/wallet​/did​/create`
+		This generates the DID and verification key
+	2. After creating local DID, you need to register it with ledger at [indy.igrant.io](indy.igrant.io) as shown below
+		![](indy-screenshot.png)
+	3. After Registering with ledger call `POST /wallet/did/public`
 	
-	`POST ​/wallet​/did​/create`
-	
-	This generates the DID and verification key which now is registered 
-	![](indy-screenshot.png)
-
 2. Repeat step 1 to create DID for the Data4Life-User, but DO NOT publish this to ledger as it shall remain private. 
 
 3. Now, based on the schema, Test Center creates a credential definition to the ledger.
