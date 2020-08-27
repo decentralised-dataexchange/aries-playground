@@ -94,7 +94,7 @@ Here, a credential is issued by the Test Center based on a standard scehma earli
 1. Create a local DID for the test center and make it public by publishing it to the ledger 
 	1. Call `POST ​/wallet​/did​/create`
 		This generates the DID and verification key
-	2. After creating local DID, you need to register it with ledger at [indy.igrant.io](indy.igrant.io) as shown below
+	2. After creating local DID, you need to register it with ledger at [indy.igrant.io](https://indy.igrant.io/) as shown below
 		![](indy-screenshot.png)
 	3. After Registering with ledger call `POST /wallet/did/public`
 	
