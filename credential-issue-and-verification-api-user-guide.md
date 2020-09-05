@@ -23,10 +23,25 @@ In your browser you can start three tabs to execute the APIs using swagger.
 | Alice (Data4Life User) | [agent2.swagger.localhost](http://agent2.swagger.localhost) | 
 | Travel Company | [agent3.swagger.localhost](http://agent3.swagger.localhost) | 
 
+
+# Create DID in a wallet
+
+The steps below to create DID in a wallet is a pre-requesite for any agent before acquiring agent roles.
+	1. Create a local DID for the agent using `POST ​/wallet​/did​/create`
+		This generates the DID and verification key
+	2. After creating local DID, you need to register it with ledger at [indy.igrant.io](https://indy.igrant.io/) as shown below
+		![](indy-screenshot.png)
+		
+In case of organisations, the DID has to be made public by registering to the indy ledger.		
+	3. After registering with the Indy ledger call `POST /wallet/did/public`
+
 # Schema definition by a legal entity
-On [Test Center Agent](http://agent1.swagger.localhost), you can execute the schema definiton API to register the schema in the ledger. Ideally this is defined by a legal entity or a standardisation body.  
-To define schema first you have to create a public DID.  
-To create public DID follow step 1 of  [Credenial issuance by the issuer (Test Center)](#credenial-issuance-by-the-issuer-test-center).  
+To make it easier, we have used the [Test Center Agent](http://agent1.swagger.localhost) to register the schema. Ideally this is defined by a legal entity or a standardisation body. 
+
+You can execute the schema definiton API to register the schema in the ledger.   
+
+To define schema first you have to create a public DID. This is done following the previous step: [Create DID in a wallet](#Create-DID-in-a-wallet)  
+
 Sends a schema to the ledger with the API `POST: ​/schemas` with the json body as given:
 	    
     {
@@ -40,13 +55,13 @@ Sends a schema to the ledger with the API `POST: ​/schemas` with the json body
 
 Try out on your local machine at: [http://agent1.swagger.localhost/api/doc#/schema/post_schemas](http://agent1.swagger.localhost/api/doc#/schema/post_schemas)
 
-# Establish connection 
-
+# Establish connection between Issuer and Holder
+ 
 Here, the Test Center and Data4Life-User agents establishes connection with each other. Following are the API call sequence:
 
 1. Create a new invitation (by Test Center)
 
-	`POST ​/connections​/create-invitation`
+	Test Center Agent: `POST ​/connections​/create-invitation`
 	
 	This generates the `connection_id` and `invitation`.
 	
@@ -66,9 +81,9 @@ Here, the Test Center and Data4Life-User agents establishes connection with each
 	    	
 	Try out on your local machine at: [http://agent3.swagger.localhost/api/doc#/connection/post_connections_create_invitation](http://agent3.swagger.localhost/api/doc#/connection/post_connections_create_invitation)
 
-2.	Receive a new connection invitation by Data4Life-User with the connection_id.
+2.	Receive a new connection invitation by Data4Life-User (Alice) with the connection_id.
 
-	`POST ​/connections​/receive-invitation` with the invitation invitation json (shown below) generated in step 1 as input. 
+	Alice Agent: `POST ​/connections​/receive-invitation` with the invitation invitation json (shown below) generated in step 1 as input. 
 	
 		`{
 	      "@type": "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/connections/1.0/invitation",	      "@id": "903fc685-0463-4f92-93ff-43dbdbfb1297",
@@ -79,9 +94,9 @@ Here, the Test Center and Data4Life-User agents establishes connection with each
 	      "label": "Test-Center"
 	  	}`
 
-3. Accept a stored connection invitation by Data4Life-user
+3. Accept a received connection invitation by Data4Life-user (Alice)
 
-	`POST ​/connections​/{conn_id}​/accept-invitation` passing the `connection_id` as input.
+	Alice Agent: `POST ​/connections​/{conn_id}​/accept-invitation` passing the `connection_id` as input.
 
 Check both Test Center Agent and Alice Agent by `GET /connections `and both are in `Active` status
 
@@ -91,12 +106,7 @@ After the secured connection is established between the two agents, the Test Cen
 
 Here, a credential is issued by the Test Center based on a standard scehma earlier defined by the legal entity.  
 
-1. Create a local DID for the test center and make it public by publishing it to the ledger 
-	1. Call `POST ​/wallet​/did​/create`
-		This generates the DID and verification key
-	2. After creating local DID, you need to register it with ledger at [indy.igrant.io](https://indy.igrant.io/) as shown below
-		![](indy-screenshot.png)
-	3. After Registering with ledger call `POST /wallet/did/public`
+1. Create a local DID for the test center and make it public by publishing it to the ledger. Follow the previous instruction: [Create DID in a wallet](#Create-DID-in-a-wallet).
 	
 2. Repeat step 1 to create DID for the Data4Life-User, but DO NOT publish this to ledger as it shall remain private. 
 
@@ -117,6 +127,8 @@ Here, a credential is issued by the Test Center based on a standard scehma earli
 		  "schema_id": "PWr9PACurgoMwowC5Bx8RD:2:Covid-19 Test Results:1.0",
 		  "tag": "default"
 		 }`
+
+**NOTE:** The next steps is for Automated flow.The automated flow settings are configured in startUp.sh file in `/cloud-agent `folder
 		
 4. Test Center now issues the credenital to the holder Alice (Data4Life-user
 	
@@ -152,33 +164,42 @@ Here, a credential is issued by the Test Center based on a standard scehma earli
 	     }
 	    }
 
-# Alice stores credential into a personal wallet (Data4Life)
+# Stores credential into a personal wallet (Data4Life)
 
-Alice, the Data4Life-User, now stores the received credentials
+In the case of automated flow, the credential is automatically stored into the wallet. In the case of manual flow, this need to be done explicitly. The automated flow settings are configured in startUp.sh file in `/cloud-agent `folder
+
+For non-automated flow, Alice, the Data4Life-User, now stores the received credentials
 
 `	POST ​/issue-credential​/records​/{cred_ex_id}​/store`
 
+Data4Life user can fetch the credentials from the wallet by `GET /credentials` 
 
-# Proof presentation by Alice to verifier (Travel Company)
+# Proof presentation by Holder (Data4Life) to verifier (Travel Company)
 
 Before any communication happens between Alice (Data4Life-User) and the verifier, a secured connection is established between two agents. After that Travel Company issues a proof request to Alice, showing what type of proof is needed to qualify in order for Alice to travel using the Covid-19 test result. Alice will build the proof based on the credential in her Data4Life wallet. Alice then sends the proof to the travel company which will observe the result.
 
 1. Establish connection
 
-	Travel Company Agent: `POST /connections/create-invitation`, from the response get the invitation object (from `{ to }`) showns earlier during the connection between Test Center and Alice.
+	Travel Company Agent: `POST /connections/create-invitation`, from the response get the invitation object (from `{ to }`) as shown earlier during the connection between Test Center and Alice.
 
 	Alice Agent: `POST /connections/receive-invitation` with the invitation object
-   
-   Check both Travel Company Agent and Alice Agent by `GET /connections `and both are in `Active` status
 
-2. In this demo, the Proof request details the Test Center is asking for is
+2. Accept a stored connection invitation by Alice (Data4Life user)
+
+	Alice Agent: `POST ​/connections​/{conn_id}​/accept-invitation` passing the `connection_id` as input.
+
+Check both Travel Company Agent and Alice Agent by `GET /connections `and both are in `Active` status
+
+After the secured connection is established between the two agents, the Travel Center equest a proof from Alice as per the credenital defintion. The following steps cover that flow.
+
+3. In this demo, the Proof request details the Test Center is asking for is
 
     	testResult
     	testDate
 
     all items follows the Credential Definition specified by the ID
     
-    `POST /present-proof/send-request` is called with the following payload (example)
+   Travel Center Agent: `POST /present-proof/send-request` is called with the following payload (example)
 
 
 	    {
@@ -218,6 +239,11 @@ Before any communication happens between Alice (Data4Life-User) and the verifier
 	* checking credentials
 	* generating proof
 	* sending proof to Travel Company
+
+**NOTE:** The proof and veification in this flow is set to automated in the startup.sh
+`  --auto-respond-presentation-proposal --auto-respond-presentation-request --auto-verify-presentation \`
+
+For non-automated flow, the above lines should be removed in the agent configuration. Presentation need to be sent by Alice in this scenario.
    
 3. From Travel Company, we can use `GET /present-proof/records` to see the proof sent by Alice. The `presentation_exchange_id` is the identifier of the presentation proof and state will tell you the current status of the presented proof.
 
