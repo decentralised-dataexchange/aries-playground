@@ -8,11 +8,11 @@
 - [Establish connection between Issuer and Holder](#establish-connection-between-issuer-and-holder)
   * [Automated work flow](#automated-work-flow)
   * [Manual work flow](#manual-work-flow)
-- [Credenial issuance by the issuer (Test Center)](#credenial-issuance-by-the-issuer--test-center-)
+- [Credenial issuance by the issuer (Test Center)](#credenial-issuance-by-the-issuer-test-center)
   * [Automated work flow](#automated-work-flow-1)
   * [Manual workflow](#manual-workflow)
-- [Stores credential into a personal wallet (Data4Life)](#stores-credential-into-a-personal-wallet--data4life-)
-- [Proof presentation by Holder (Data4Life) to Verifier (Travel Company)](#proof-presentation-by-holder--data4life--to-verifier--travel-company-)
+- [Stores credential into a personal wallet (Data4Life)](#stores-credential-into-a-personal-wallet-data4life)
+- [Proof presentation by Holder (Data4Life) to Verifier (Travel Company)](#proof-presentation-by-holder-data4life-to-verifier-travel-company)
 - [References](#references)
 
 # Introduction
