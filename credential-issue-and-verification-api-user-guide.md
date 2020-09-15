@@ -1,3 +1,7 @@
+<font size="5">**Table of Contents**</font>
+
+[TOC]
+
 # Introduction
 This describes the API call flows during a verified data exchange process using hyperledger Indy as the distributed ledger registry and hyperldge aries agent for client application. 
 
@@ -60,6 +64,7 @@ Try out on your local machine at: [http://agent1.swagger.localhost/api/doc#/sche
 # Establish connection between Issuer and Holder
  
 Here, the Test Center and Data4Life-User agents establishes connection with each other. Following are the API call sequence:
+
 ## Automated work flow
 1. Create a new invitation (by Test Center)
 
@@ -99,6 +104,7 @@ Here, the Test Center and Data4Life-User agents establishes connection with each
 3. Accept a received connection invitation by Data4Life-user (Alice)
 
 	Alice Agent: `POST ​/connections​/{conn_id}​/accept-invitation` passing the `connection_id` as input.  
+
 ## Manual work flow
 1. Repeat steps 1 - 3 of  automated workflow.
 2. Now the connection will be in request state, Issuer (Test Center) has to accept the request  
@@ -112,7 +118,9 @@ Check both Test Center Agent and Alice Agent by `GET /connections `and both are 
 After the secured connection is established between the two agents, the Test Center first establishes the connection with Alice. After that the Test Center issues credential to them with their own personal data. Alice then is able to see the credential in her Data4Life wallet.
 
 # Credenial issuance by the issuer (Test Center)
-Here, a credential is issued by the Test Center based on a standard scehma earlier defined by the legal entity.  
+
+Here, a credential is issued by the Test Center based on a standard scehma earlier defined by the legal entity.
+
 1. Create a local DID for the test center and make it public by publishing it to the ledger. Follow the previous instruction: [Create DID in a wallet](#Create-DID-in-a-wallet).
 	
 2. Repeat step 1 to create DID for the Data4Life-User, but DO NOT publish this to ledger as it shall remain private. 
@@ -135,7 +143,8 @@ Here, a credential is issued by the Test Center based on a standard scehma earli
 		  "tag": "default"
 		 }`
 
-## Automated work flow		
+## Automated work flow
+		
 4. Test Center now issues the credenital to the holder Alice (Data4Life-user)
 	
 	Test Center Agent: `POST ​/issue-credential​/send`
@@ -169,7 +178,9 @@ Here, a credential is issued by the Test Center based on a standard scehma earli
 	      ]
 	     }
 	    }
+
 ## Manual workflow
+
 4. Issuer (Test Center) sends a offer with the result of the test.  
 Test Center Agent: `POST/issue-credential​/send-offer`  
 	
@@ -193,19 +204,26 @@ Test Center Agent: `POST/issue-credential​/send-offer`
           "trace": false,
           "auto_remove": true
         }
+	
 	Now the state will be offer_sent for Issuer (Test Center)  
-    **Note:** `GET /issue-credential​/records` to view the state    
+   
+   **Note:** `GET /issue-credential​/records` to view the state    
 
 5. Alice will call `GET /issue-credential​/records`  
 The state will be offer_received and from this response copy the credential exchange id.  
+
 6. Alice will send request to issue the credential using credential exchange id.  
 Alice Agent: `POST /issue-credential​/records​/{cred_ex_id}​/send-request`  
 Now the state will be request_sent for Alice
+
 7. Issuer (Test Center) will call `GET/issue-credential​/records`  
 The state will be request_received and from this response copy the credential exchange id.
+
 8. Issuer (Test Center) issues the certificate using credential exchange id  
+
 Test Center Agent: `POST /issue-credential​/records​/{cred_ex_id}​/issue`  
-Now the credential will be issued to Alice and state will change to  credential_issued   
+
+Now, the credential will be issued to Alice and state will change to  credential_issued   
 
 # Stores credential into a personal wallet (Data4Life)
 
