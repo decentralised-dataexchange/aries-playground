@@ -12,7 +12,7 @@
   * [Automated work flow](#automated-work-flow-1)
   * [Manual workflow](#manual-workflow)
 - [Stores credential into a personal wallet (Data4Life)](#stores-credential-into-a-personal-wallet--data4life-)
-- [Proof presentation by Holder (Data4Life) to verifier (Travel Company)](#proof-presentation-by-holder--data4life--to-verifier--travel-company-)
+- [Proof presentation by Holder (Data4Life) to Verifier (Travel Company)](#proof-presentation-by-holder--data4life--to-verifier--travel-company-)
 - [References](#references)
 
 # Introduction
@@ -248,7 +248,7 @@ Alice Agent: `POST ​/issue-credential​/records​/{cred_ex_id}​/store`
 
 Data4Life user can fetch the credentials from the wallet by `GET /credentials` 
 
-# Proof presentation by Holder (Data4Life) to verifier (Travel Company)
+# Proof presentation by Holder (Data4Life) to Verifier (Travel Company)
 
 Before any communication happens between Alice (Data4Life-User) and the verifier, a secured connection is established between two agents. After that Travel Company issues a proof request to Alice, showing what type of proof is needed to qualify in order for Alice to travel using the Covid-19 test result. Alice will build the proof based on the credential in her Data4Life wallet. Alice then sends the proof to the travel company which will observe the result.
 
