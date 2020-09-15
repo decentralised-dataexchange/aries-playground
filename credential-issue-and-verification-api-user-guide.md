@@ -23,6 +23,8 @@ In your browser you can start three tabs to execute the APIs using swagger.
 | Alice (Data4Life User) | [agent2.swagger.localhost](http://agent2.swagger.localhost) | 
 | Travel Company | [agent3.swagger.localhost](http://agent3.swagger.localhost) | 
 
+# Work flow  
+The work flow can be performed either manually or automatically. By default it will be automatic. To make it manual replace the code of [startup.sh](https://github.com/decentralised-dataexchange/aries-playground/blob/master/cloud-agent/startup.sh) with code of [startup_temp.sh](https://github.com/decentralised-dataexchange/aries-playground/blob/master/cloud-agent/startup_temp.sh)
 
 # Create DID in a wallet
 
@@ -58,7 +60,7 @@ Try out on your local machine at: [http://agent1.swagger.localhost/api/doc#/sche
 # Establish connection between Issuer and Holder
  
 Here, the Test Center and Data4Life-User agents establishes connection with each other. Following are the API call sequence:
-
+## Automated work flow
 1. Create a new invitation (by Test Center)
 
 	Test Center Agent: `POST ​/connections​/create-invitation`
@@ -96,16 +98,21 @@ Here, the Test Center and Data4Life-User agents establishes connection with each
 
 3. Accept a received connection invitation by Data4Life-user (Alice)
 
-	Alice Agent: `POST ​/connections​/{conn_id}​/accept-invitation` passing the `connection_id` as input.
+	Alice Agent: `POST ​/connections​/{conn_id}​/accept-invitation` passing the `connection_id` as input.  
+## Manual work flow
+1. Repeat steps 1 - 3 of  automated workflow.
+2. Now the connection will be in request state, Issuer (Test Center) has to accept the request  
+Test Center Agent: `POST /connections​/{conn_id}​/accept-request`  
+Now the state changes to response
+3. To make the connection active we have to call the trust ping endpoint either from issuer (Test Center) or from holder (Alice).  
+Test Center/Alice Agent: `POST /connections​/{conn_id}​/send-ping`  
 
-Check both Test Center Agent and Alice Agent by `GET /connections `and both are in `Active` status
+Check both Test Center Agent and Alice Agent by `GET /connections `and both are in `Active` status  
 
 After the secured connection is established between the two agents, the Test Center first establishes the connection with Alice. After that the Test Center issues credential to them with their own personal data. Alice then is able to see the credential in her Data4Life wallet.
 
 # Credenial issuance by the issuer (Test Center)
-
 Here, a credential is issued by the Test Center based on a standard scehma earlier defined by the legal entity.  
-
 1. Create a local DID for the test center and make it public by publishing it to the ledger. Follow the previous instruction: [Create DID in a wallet](#Create-DID-in-a-wallet).
 	
 2. Repeat step 1 to create DID for the Data4Life-User, but DO NOT publish this to ledger as it shall remain private. 
@@ -128,11 +135,10 @@ Here, a credential is issued by the Test Center based on a standard scehma earli
 		  "tag": "default"
 		 }`
 
-**NOTE:** The next steps is for Automated flow.The automated flow settings are configured in startUp.sh file in `/cloud-agent `folder
-		
-4. Test Center now issues the credenital to the holder Alice (Data4Life-user
+## Automated work flow		
+4. Test Center now issues the credenital to the holder Alice (Data4Life-user)
 	
-	`POST	​/issue-credential​/send`
+	Test Center Agent: `POST ​/issue-credential​/send`
 	
 	with auto_remove set to FALSE
 	
@@ -163,14 +169,51 @@ Here, a credential is issued by the Test Center based on a standard scehma earli
 	      ]
 	     }
 	    }
+## Manual workflow
+4. Issuer (Test Center) sends a offer with the result of the test.  
+Test Center Agent: `POST/issue-credential​/send-offer`  
+	
+	**Note:** In request body auto issue and auto remove should be false  
+
+        {
+          "cred_def_id": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+          "credential_preview": {
+            "@type": "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/issue-credential/1.0/credential-preview",
+            "attributes": [
+              {
+                "name": "Covid19-test",
+                "mime-type": "text/plain",
+                "value": "negative"
+              }
+            ]
+          },
+          "connection_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "auto_issue": true,
+          "comment": "string",
+          "trace": false,
+          "auto_remove": true
+        }
+	Now the state will be offer_sent for Issuer (Test Center)  
+    **Note:** `GET /issue-credential​/records` to view the state    
+
+5. Alice will call `GET /issue-credential​/records`  
+The state will be offer_received and from this response copy the credential exchange id.  
+6. Alice will send request to issue the credential using credential exchange id.  
+Alice Agent: `POST /issue-credential​/records​/{cred_ex_id}​/send-request`  
+Now the state will be request_sent for Alice
+7. Issuer (Test Center) will call `GET/issue-credential​/records`  
+The state will be request_received and from this response copy the credential exchange id.
+8. Issuer (Test Center) issues the certificate using credential exchange id  
+Test Center Agent: `POST /issue-credential​/records​/{cred_ex_id}​/issue`  
+Now the credential will be issued to Alice and state will change to  credential_issued   
 
 # Stores credential into a personal wallet (Data4Life)
 
-In the case of automated flow, the credential is automatically stored into the wallet. In the case of manual flow, this need to be done explicitly. The automated flow settings are configured in startUp.sh file in `/cloud-agent `folder
+In the case of automated flow, the credential is automatically stored into the wallet. In the case of manual flow, this need to be done explicitly.
 
-For non-automated flow, Alice, the Data4Life-User, now stores the received credentials
+For manual flow, Alice, the Data4Life-User, now stores the received credentials
 
-`	POST ​/issue-credential​/records​/{cred_ex_id}​/store`
+Alice Agent: `POST ​/issue-credential​/records​/{cred_ex_id}​/store`
 
 Data4Life user can fetch the credentials from the wallet by `GET /credentials` 
 
