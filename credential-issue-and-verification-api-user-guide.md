@@ -1,6 +1,19 @@
-<font size="5">**Table of Contents**</font>
+## Table of Contents
 
-[TOC]
+- [Introduction](#introduction)
+- [Reference system](#reference-system)
+- [Work flow](#work-flow)
+- [Create DID in a wallet](#create-did-in-a-wallet)
+- [Schema definition by a legal entity](#schema-definition-by-a-legal-entity)
+- [Establish connection between Issuer and Holder](#establish-connection-between-issuer-and-holder)
+  * [Automated work flow](#automated-work-flow)
+  * [Manual work flow](#manual-work-flow)
+- [Credenial issuance by the issuer (Test Center)](#credenial-issuance-by-the-issuer--test-center-)
+  * [Automated work flow](#automated-work-flow-1)
+  * [Manual workflow](#manual-workflow)
+- [Stores credential into a personal wallet (Data4Life)](#stores-credential-into-a-personal-wallet--data4life-)
+- [Proof presentation by Holder (Data4Life) to verifier (Travel Company)](#proof-presentation-by-holder--data4life--to-verifier--travel-company-)
+- [References](#references)
 
 # Introduction
 This describes the API call flows during a verified data exchange process using hyperledger Indy as the distributed ledger registry and hyperldge aries agent for client application. 
