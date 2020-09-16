@@ -192,7 +192,7 @@ Here, a credential is issued by the Test Center based on a standard scehma earli
 	     }
 	    }
 
-## Manual workflow
+## Manual work flow
 
 4. Issuer (Test Center) sends a offer with the result of the test.  
 Test Center Agent: `POST/issue-credential​/send-offer`  
@@ -251,7 +251,7 @@ Data4Life user can fetch the credentials from the wallet by `GET /credentials`
 # Proof presentation by Holder (Data4Life) to Verifier (Travel Company)
 
 Before any communication happens between Alice (Data4Life-User) and the verifier, a secured connection is established between two agents. After that Travel Company issues a proof request to Alice, showing what type of proof is needed to qualify in order for Alice to travel using the Covid-19 test result. Alice will build the proof based on the credential in her Data4Life wallet. Alice then sends the proof to the travel company which will observe the result.
-
+## Automated work flow
 1. Establish connection
 
 	Travel Company Agent: `POST /connections/create-invitation`, from the response get the invitation object (from `{ to }`) as shown earlier during the connection between Test Center and Alice.
@@ -264,7 +264,7 @@ Before any communication happens between Alice (Data4Life-User) and the verifier
 
 Check both Travel Company Agent and Alice Agent by `GET /connections `and both are in `Active` status
 
-After the secured connection is established between the two agents, the Travel Center equest a proof from Alice as per the credenital defintion. The following steps cover that flow.
+After the secured connection is established between the two agents, the Travel Center request a proof from Alice as per the credenital defintion. The following steps cover that flow.
 
 3. In this demo, the Proof request details the Test Center is asking for is
 
@@ -314,14 +314,41 @@ After the secured connection is established between the two agents, the Travel C
 	* generating proof
 	* sending proof to Travel Company
 
-**NOTE:** The proof and veification in this flow is set to automated in the startup.sh
-`  --auto-respond-presentation-proposal --auto-respond-presentation-request --auto-verify-presentation \`
+4. From Travel Company, we can use `GET /present-proof/records` to see the proof sent by Alice. The `presentation_exchange_id` is the identifier of the presentation proof and state will tell you the current status of the presented proof.  
 
-For non-automated flow, the above lines should be removed in the agent configuration. Presentation need to be sent by Alice in this scenario.
-   
-3. From Travel Company, we can use `GET /present-proof/records` to see the proof sent by Alice. The `presentation_exchange_id` is the identifier of the presentation proof and state will tell you the current status of the presented proof.
+## Manual work flow
+1. Repeat steps 1 - 2 of automated flow
+2. Now the connection will be in request state, Verifier (Travel company) has to accept the request.  
+Travel Company Agent: `POST /connections​/{conn_id}​/accept-request`  
+Now the state changes to response.
+3. To make the connection active we have to call the trust ping endpoint either from Verifier (Travel company) or from holder (Alice).  
+Travel Company/Alice Agent: `POST /connections​/{conn_id}​/send-ping`  
+4. Perform step 3 of automated flow.
+5. Holder (Alice) has to get the presentation exchange id  
+   Alice Agent: `GET /present-proof/records`
+6. Holder (Alice) will send the presentation  
+   Alice Agent: `POST
+​/present-proof​/records​/{pres_ex_id}​/send-presentation` is called with the following payload (example)  
 
-4. Finally Travel Company use `POST /present-proof/{pres-ex-id}/verify-presentation` to see Alice’s proof presentation.
+    	{
+    		"requested_predicates": {
+    		},
+    		"trace": false,
+    		"self_attested_attributes": {
+    		},
+    		"requested_attributes": {
+        		"Test Result": {
+        			"cred_id": "b5df5eac-047f-4ad0-98cc-7e6138a2f339",
+        			"revealed": true
+        		},
+        		"Test Date": {
+        			"cred_id": "b5df5eac-047f-4ad0-98cc-7e6138a2f339",
+        			"revealed": true
+        		}
+    		}
+    	}
+
+7. Finally Travel Company use `POST /present-proof/{pres-ex-id}/verify-presentation` to see Alice’s proof presentation.
 
 # References
 [1] [Setting up indy network and agents](https://github.com/decentralised-dataexchange/aries-playground/blob/master/README.md) 
