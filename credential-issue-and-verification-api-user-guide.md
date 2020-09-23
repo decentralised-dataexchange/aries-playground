@@ -56,7 +56,7 @@ The steps below to create DID in a wallet is a pre-requesite for any agent befor
 	
 2. After creating local DID, you need to register it with ledger at [indy.igrant.io](https://indy.igrant.io/) as shown below
 
-		![](indy-screenshot.png)
+	![](indy-screenshot.png)
 		
    In case of organisations, the DID has to be made public by registering to the indy ledger.
 
