@@ -1,18 +1,23 @@
+# Credential Issue and Verification API User Guide
 ## Table of Contents
 
+- [Credential Issue and Verification API User Guide](#credential-issue-and-verification-api-user-guide)
+	- [Table of Contents](#table-of-contents)
 - [Introduction](#introduction)
 - [Reference system](#reference-system)
 - [Work flow](#work-flow)
 - [Create DID in a wallet](#create-did-in-a-wallet)
 - [Schema definition by a legal entity](#schema-definition-by-a-legal-entity)
 - [Establish connection between Issuer and Holder](#establish-connection-between-issuer-and-holder)
-  * [Automated work flow](#automated-work-flow)
-  * [Manual work flow](#manual-work-flow)
+	- [Automated work flow](#automated-work-flow)
+	- [Manual work flow](#manual-work-flow)
 - [Credenial issuance by the issuer (Test Center)](#credenial-issuance-by-the-issuer-test-center)
-  * [Automated work flow](#automated-work-flow-1)
-  * [Manual work flow](#manual-work-flow)
+	- [Automated work flow](#automated-work-flow-1)
+	- [Manual work flow](#manual-work-flow-1)
 - [Stores credential into a personal wallet (Data4Life)](#stores-credential-into-a-personal-wallet-data4life)
 - [Proof presentation by Holder (Data4Life) to Verifier (Travel Company)](#proof-presentation-by-holder-data4life-to-verifier-travel-company)
+	- [Automated work flow](#automated-work-flow-2)
+	- [Manual work flow](#manual-work-flow-2)
 - [References](#references)
 
 # Introduction
@@ -46,13 +51,17 @@ The work flow can be performed either manually or automatically. By default it w
 # Create DID in a wallet
 
 The steps below to create DID in a wallet is a pre-requesite for any agent before acquiring agent roles.
-	1. Create a local DID for the agent using `POST ​/wallet​/did​/create`
-		This generates the DID and verification key
-	2. After creating local DID, you need to register it with ledger at [indy.igrant.io](https://indy.igrant.io/) as shown below
+
+1. Create a local DID for the agent using `POST ​/wallet​/did​/create`	This generates the DID and verification key
+	
+2. After creating local DID, you need to register it with ledger at [indy.igrant.io](https://indy.igrant.io/) as shown below
+
 		![](indy-screenshot.png)
 		
-In case of organisations, the DID has to be made public by registering to the indy ledger.		
-	3. After registering with the Indy ledger call `POST /wallet/did/public`
+   In case of organisations, the DID has to be made public by registering to the indy ledger.
+
+		
+3. After registering with the Indy ledger call `POST /wallet/did/public`
 
 # Schema definition by a legal entity
 To make it easier, we have used the [Test Center Agent](http://agent1.swagger.localhost) to register the schema. Ideally this is defined by a legal entity or a standardisation body. 
