@@ -108,7 +108,7 @@ Here, the Test Center and Data4Life-User agents establishes connection with each
 	     "invitation_url": "http://agent1.localhost?c_i=eyJAdHlwZSI6ICJkaWQ6c292OkJ6Q2JzTlloTXJqSGlxWkRUVUFTSGc7c3BlYy9jb25uZWN0aW9ucy8xLjAvaW52aXRhdGlvbiIsICJAaWQiOiAiOTAzZmM2ODUtMDQ2My00ZjkyLTkzZmYtNDNkYmRiZmIxMjk3IiwgInNlcnZpY2VFbmRwb2ludCI6ICJodHRwOi8vYWdlbnQzLmxvY2FsaG9zdCIsICJyZWNpcGllbnRLZXlzIjogWyI3ZUNkSmdqNXI1WmpHWXFWSllHVGpkakZxeE5uUDNvV3hZc2VhZ1BvQjFnZyJdLCAibGFiZWwiOiAiVHJhdmVsLUNvbXBhbnkifQ=="
 	    }
 	    	
-	Try out on your local machine at: [http://agent3.swagger.localhost/api/doc#/connection/post_connections_create_invitation](http://agent3.swagger.localhost/api/doc#/connection/post_connections_create_invitation)
+	Try out on your local machine at: [http://agent1.swagger.localhost/api/doc#/connection/post_connections_create_invitation](http://agent1.swagger.localhost/api/doc#/connection/post_connections_create_invitation)
 
 2.	Receive a new connection invitation by Data4Life-User (Alice) with the connection_id.
 
