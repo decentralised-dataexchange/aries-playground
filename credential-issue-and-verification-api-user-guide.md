@@ -23,7 +23,7 @@
 # Introduction
 This describes the API call flows during a verified data exchange process using hyperledger Indy as the distributed ledger registry and hyperldge aries agent for client application. 
 
-The indy network is up and running at https://indy.igrant.io/. The aries agents are connected to this network and configured locally as described [here](https://github.com/decentralised-dataexchange/aries-playground/blob/master/README.md). Executing the sequence of operations described creates the reference system described [below](#Reference sytem).
+The indy network is up and running at https://indy.igrant.io/. The aries agents are connected to this network and configured locally as described [here](https://github.com/decentralised-dataexchange/aries-playground/blob/master/README.md). Executing the sequence of operations described creates the reference system described [below](#Reference-system).
 
 # Reference system
 In our reference implementation, we have the individual (Alice) holding her health data in her wallet app (Data4Life) issued by a Health Test Center. This health data could be used by Alice to prove her health status to a travel company. The legal entity ensures that the test center follows the schema and governance. 
@@ -54,14 +54,10 @@ The steps below to create DID in a wallet is a pre-requesite for any agent befor
 
 1. Create a local DID for the agent using `POST ​/wallet​/did​/create`	This generates the DID and verification key
 	
-2. After creating local DID, you need to register it with ledger at [indy.igrant.io](https://indy.igrant.io/) as shown below
+2. For organisations, After creating local DID, you need to register it with ledger at [indy.igrant.io](https://indy.igrant.io/) as shown below
 
 	![](indy-screenshot.png)
-		
-   In case of organisations, the DID has to be made public by registering to the indy ledger.
-
-		
-3. After registering with the Indy ledger call `POST /wallet/did/public`
+After registering with the Indy ledger call `POST /wallet/did/public`
 
 # Schema definition by a legal entity
 To make it easier, we have used the [Test Center Agent](http://agent1.swagger.localhost) to register the schema. Ideally this is defined by a legal entity or a standardisation body. 
