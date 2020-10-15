@@ -10,73 +10,73 @@ services:
     networks:
       - aries-playground-nw
 
-  agent1.localhost:
+  test-center.localhost:
     image: georgejpadayatti/aries-cloudagent:0.5.3
     command: /bin/bash -c "./startup.sh"
-    container_name: agent1.localhost
+    container_name: test-center.localhost
     ports:
       - 8051:8001
     environment:
       AGENT_NAME: Test-Center
-      ACAPY_ENDPOINT: http://agent1.localhost
+      ACAPY_ENDPOINT: http://test-center.localhost
       GENESIS_URL: https://indy.igrant.io/genesis
-      WEBHOOK_URL: http://agent1.webhook:8080
+      WEBHOOK_URL: http://test-center.webhook:8080
     volumes:
       - ./cloud-agent/startup.sh:/home/indy/startup.sh
     networks:
       - aries-playground-nw
 
-  agent1.webhook:
+  test-center.webhook:
     image: georgejpadayatti/aries-webhook-interceptor:0.1
-    container_name: agent1.webhook
+    container_name: test-center.webhook
     ports:
       - 8081:8080
     networks:
       - aries-playground-nw
 
-  agent2.localhost:
+  data4Life-user.localhost:
     image: georgejpadayatti/aries-cloudagent:0.5.3
     command: /bin/bash -c "./startup.sh"
-    container_name: agent2.localhost
+    container_name: data4Life-user.localhost
     ports:
       - 8052:8001
     environment:
       AGENT_NAME: Data4Life-User
-      ACAPY_ENDPOINT: http://agent2.localhost
+      ACAPY_ENDPOINT: http://data4Life-user.localhost
       GENESIS_URL: https://indy.igrant.io/genesis
-      WEBHOOK_URL: http://agent2.webhook:8080
+      WEBHOOK_URL: http://data4Life-user.webhook:8080
     volumes:
       - ./cloud-agent/startup.sh:/home/indy/startup.sh
     networks:
       - aries-playground-nw
 
-  agent2.webhook:
+  data4Life-user.webhook:
     image: georgejpadayatti/aries-webhook-interceptor:0.1
-    container_name: agent2.webhook
+    container_name: data4Life-user.webhook
     ports:
       - 8082:8080
     networks:
       - aries-playground-nw
 
-  agent3.localhost:
+  travel-company.localhost:
     image: georgejpadayatti/aries-cloudagent:0.5.3
     command: /bin/bash -c "./startup.sh"
-    container_name: agent3.localhost
+    container_name: travel-company.localhost
     ports:
       - 8053:8001
     environment:
       AGENT_NAME: Travel-Company
-      ACAPY_ENDPOINT: http://agent3.localhost
+      ACAPY_ENDPOINT: http://travel-company.localhost
       GENESIS_URL: https://indy.igrant.io/genesis
-      WEBHOOK_URL: http://agent3.webhook:8080
+      WEBHOOK_URL: http://travel-company.webhook:8080
     volumes:
       - ./cloud-agent/startup.sh:/home/indy/startup.sh
     networks:
       - aries-playground-nw
 
-  agent3.webhook:
+  travel-company.webhook:
     image: georgejpadayatti/aries-webhook-interceptor:0.1
-    container_name: agent3.webhook
+    container_name: travel-company.webhook
     ports:
       - 8083:8080
     networks:
