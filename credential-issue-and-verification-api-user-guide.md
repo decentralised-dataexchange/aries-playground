@@ -45,6 +45,20 @@ In your browser you can start three tabs to execute the APIs using swagger.
 | Alice (Data4Life User) | [agent2.swagger.localhost](http://agent2.swagger.localhost) | 
 | Travel Company | [agent3.swagger.localhost](http://agent3.swagger.localhost) | 
 
+# Use case Scenario
+Alice is a travel vloger, Her next destination is dubai but, due to covid pandemic, she has to prove to a travel agent, that her result is negative. So that she will be allowed to travel.  
+Alice listed out the things she has to do:  
+1. Visit a covid test center
+    **Note:** Test center should follow a schema defined by a legal entity to issue the certificate. Refer [schema definiton by legal entity](#schema-definition-by-a-legal-entity)  
+    - Test center and alice creates a connection to exchange information. Refer [Establish connection between Issuer and Holder](#establish-connection-between-issuer-and-holder)  
+    - The Test center will test alice's samples and issues a certificate. Refer [Credenial issuance by the issuer](#credenial-issuance-by-the-issuer-test-center)
+    
+2. Store the issued credentials to her wallet. Refer [Stores credential into a personal wallet](#stores-credential-into-a-personal-wallet-data4Life)  
+3. Present proof to travel agent. Refer [Proof presentation by Holder](#proof-presentation-by-holder-data4life-to-verifier-travel-company)  
+  
+Alice will be allowed to travel affter completing these steps.  
+![Use case diagram](usecase.png)
+
 # Work flow  
 The work flow can be performed either manually or automatically. By default it will be automatic. To make it manual replace the code of [startup.sh](https://github.com/decentralised-dataexchange/aries-playground/blob/master/cloud-agent/startup.sh) with code of [startup_temp.sh](https://github.com/decentralised-dataexchange/aries-playground/blob/master/cloud-agent/startup_temp.sh)
 
@@ -64,7 +78,7 @@ To make it easier, we have used the [Test Center Agent](http://agent1.swagger.lo
 
 You can execute the schema definiton API to register the schema in the ledger.   
 
-To define schema first you have to create a public DID. This is done following the previous step: [Create DID in a wallet](#Create-DID-in-a-wallet)  
+To define schema first you have to create a public DID. This is done following the previous step: [Create DID in a wallet](#create-did-in-a-wallet)  
 
 Sends a schema to the ledger with the API `POST: ​/schemas` with the json body as given:
 	    
