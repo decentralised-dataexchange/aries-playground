@@ -33,17 +33,17 @@ Once the reference system is up and running you can start 3 terminals and monito
 
 | Agent  | Swagger API endpoint admin UI | 
 | ------------- | ------------- | 
-| Test Center | `docker exec -it agent1.webhook tail -f demo.log`| 
-| Alice (Data4Life User) | `docker exec -it agent2.webhook tail -f demo.log` | 
-| Travel Company | `docker exec -it agent3.webhook tail -f demo.log`| 
+| Test Center | `docker exec -it test-center.webhook tail -f demo.log`| 
+| Alice (Data4Life User) | `docker exec -it data4life-user.webhook tail -f demo.log` | 
+| Travel Company | `docker exec -it travel-company.webhook tail -f demo.log`| 
 
 In your browser you can start three tabs to execute the APIs using swagger.
 
 | Agent  | Swagger API endpoint admin UI | 
 | ------------- | ------------- | 
-| Test Center | [agent1.swagger.localhost](http://agent1.swagger.localhost) | 
-| Alice (Data4Life User) | [agent2.swagger.localhost](http://agent2.swagger.localhost) | 
-| Travel Company | [agent3.swagger.localhost](http://agent3.swagger.localhost) | 
+| Test Center | [test-center.swagger.localhost](http://test-center.swagger.localhost) | 
+| Alice (Data4Life User) | [data4life-user.swagger.localhost](http://data4life-user.swagger.localhost) | 
+| Travel Company | [travel-company.swagger.localhost](http://travel-company.swagger.localhost) | 
 
 # Use case Scenario
 Alice is a travel vloger, Her next destination is dubai but, due to covid pandemic, she has to prove to a travel agent, that her result is negative. So that she will be allowed to travel.  
@@ -74,7 +74,7 @@ The steps below to create DID in a wallet is a pre-requesite for any agent befor
 After registering with the Indy ledger call `POST /wallet/did/public`
 
 # Schema definition by a legal entity
-To make it easier, we have used the [Test Center Agent](http://agent1.swagger.localhost) to register the schema. Ideally this is defined by a legal entity or a standardisation body. 
+To make it easier, we have used the [Test Center Agent](http://test-center.swagger.localhost) to register the schema. Ideally this is defined by a legal entity or a standardisation body. 
 
 You can execute the schema definiton API to register the schema in the ledger.   
 
@@ -91,7 +91,7 @@ Sends a schema to the ledger with the API `POST: ​/schemas` with the json body
       		]	
      }
 
-Try out on your local machine at: [http://agent1.swagger.localhost/api/doc#/schema/post_schemas](http://agent1.swagger.localhost/api/doc#/schema/post_schemas)
+Try out on your local machine at: [http://test-center.swagger.localhost/api/doc#/schema/post_schemas](http://test-center.swagger.localhost/api/doc#/schema/post_schemas)
 
 # Establish connection between Issuer and Holder
  
@@ -109,16 +109,16 @@ Here, the Test Center and Data4Life-User agents establishes connection with each
 	     "invitation": {
 	       "@type": "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/connections/1.0/invitation",
 	       "@id": "903fc685-0463-4f92-93ff-43dbdbfb1297",
-	       "serviceEndpoint": "http://agent1.localhost",
+	       "serviceEndpoint": "http://test-center.localhost",
 	       "recipientKeys": [
 	           "7eCdJgj5r5ZjGYqVJYGTjdjFqxNnP3oWxYseagPoB1gg"
 	        ],
 	       "label": "Test-Center"
 	     },
-	     "invitation_url": "http://agent1.localhost?c_i=eyJAdHlwZSI6ICJkaWQ6c292OkJ6Q2JzTlloTXJqSGlxWkRUVUFTSGc7c3BlYy9jb25uZWN0aW9ucy8xLjAvaW52aXRhdGlvbiIsICJAaWQiOiAiOTAzZmM2ODUtMDQ2My00ZjkyLTkzZmYtNDNkYmRiZmIxMjk3IiwgInNlcnZpY2VFbmRwb2ludCI6ICJodHRwOi8vYWdlbnQzLmxvY2FsaG9zdCIsICJyZWNpcGllbnRLZXlzIjogWyI3ZUNkSmdqNXI1WmpHWXFWSllHVGpkakZxeE5uUDNvV3hZc2VhZ1BvQjFnZyJdLCAibGFiZWwiOiAiVHJhdmVsLUNvbXBhbnkifQ=="
+	     "invitation_url": "http://test-center.localhost?c_i=eyJAdHlwZSI6ICJkaWQ6c292OkJ6Q2JzTlloTXJqSGlxWkRUVUFTSGc7c3BlYy9jb25uZWN0aW9ucy8xLjAvaW52aXRhdGlvbiIsICJAaWQiOiAiOTAzZmM2ODUtMDQ2My00ZjkyLTkzZmYtNDNkYmRiZmIxMjk3IiwgInNlcnZpY2VFbmRwb2ludCI6ICJodHRwOi8vYWdlbnQzLmxvY2FsaG9zdCIsICJyZWNpcGllbnRLZXlzIjogWyI3ZUNkSmdqNXI1WmpHWXFWSllHVGpkakZxeE5uUDNvV3hZc2VhZ1BvQjFnZyJdLCAibGFiZWwiOiAiVHJhdmVsLUNvbXBhbnkifQ=="
 	    }
 	    	
-	Try out on your local machine at: [http://agent1.swagger.localhost/api/doc#/connection/post_connections_create_invitation](http://agent1.swagger.localhost/api/doc#/connection/post_connections_create_invitation)
+	Try out on your local machine at: [http://test-center.swagger.localhost/api/doc#/connection/post_connections_create_invitation](http://test-center.swagger.localhost/api/doc#/connection/post_connections_create_invitation)
 
 2.	Receive a new connection invitation by Data4Life-User (Alice) with the connection_id.
 
@@ -126,7 +126,7 @@ Here, the Test Center and Data4Life-User agents establishes connection with each
 	
 		`{
 	      "@type": "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/connections/1.0/invitation",	      "@id": "903fc685-0463-4f92-93ff-43dbdbfb1297",
-	      "serviceEndpoint": "http://agent1.localhost",
+	      "serviceEndpoint": "http://test-center.localhost",
 	      "recipientKeys": [
 	           "7eCdJgj5r5ZjGYqVJYGTjdjFqxNnP3oWxYseagPoB1gg"
 	        ],
