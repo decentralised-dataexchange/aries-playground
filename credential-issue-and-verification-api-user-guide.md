@@ -48,7 +48,7 @@ In your browser you can start three tabs to execute the APIs using swagger.
 # Use case Scenario
 Alice is a travel vloger, Her next destination is dubai but, due to covid pandemic, she has to prove to a travel agent, that her result is negative. So that she will be allowed to travel.  
 Alice listed out the things she has to do:  
-1. Visit a covid test center
+1. Visit a covid test center  
     **Note:** Test center should follow a schema defined by a legal entity to issue the certificate. Refer [schema definiton by legal entity](#schema-definition-by-a-legal-entity)  
     - Test center and alice creates a connection to exchange information. Refer [Establish connection between Issuer and Holder](#establish-connection-between-issuer-and-holder)  
     - The Test center will test alice's samples and issues a certificate. Refer [Credenial issuance by the issuer](#credenial-issuance-by-the-issuer-test-center)
@@ -223,18 +223,23 @@ Test Center Agent: `POST/issue-credential​/send-offer`
           "credential_preview": {
             "@type": "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/issue-credential/1.0/credential-preview",
             "attributes": [
-              {
-                "name": "Covid19-test",
-                "mime-type": "text/plain",
-                "value": "negative"
-              }
-            ]
+	        {
+	          "name": "testDate",
+	          "mime-type": "text/plain",
+	          "value": "22-Aug-2020"
+	        },
+	        {
+	          "name": "testResult",
+	          "mime-type": "text/plain",
+	          "value": "negative"
+	        }
+	        ]
           },
           "connection_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          "auto_issue": true,
+          "auto_issue": false,
           "comment": "string",
           "trace": false,
-          "auto_remove": true
+          "auto_remove": false
         }
 	
 	Now the state will be offer_sent for Issuer (Test Center)  
@@ -310,7 +315,6 @@ After the secured connection is established between the two agents, the Travel C
 	          }
 	        ]
 	       },
-	       {
 	       "0_testdate_uuid": {
 	        "name": "testDate",
 	        "restrictions": [
@@ -322,7 +326,6 @@ After the secured connection is established between the two agents, the Travel C
 	     },
 	     "requested_predicates": {}
 	    }
-	  }
    
    Using the requested_predicates, you can do some assertions, example, the testDate shall be less than 2 days from today. 
    
@@ -356,17 +359,17 @@ Travel Company/Alice Agent: `POST /connections​/{conn_id}​/send-ping`
     		"self_attested_attributes": {
     		},
     		"requested_attributes": {
-        		"Test Result": {
+        		"0_testresult_uuid": {
         			"cred_id": "b5df5eac-047f-4ad0-98cc-7e6138a2f339",
         			"revealed": true
         		},
-        		"Test Date": {
+        		"0_testdate_uuid": {
         			"cred_id": "b5df5eac-047f-4ad0-98cc-7e6138a2f339",
         			"revealed": true
         		}
     		}
     	}
-
+**Note:** requested_attribute fields keys should be same as in the body of  `POST /present-proof/send-request`   
 7. Finally Travel Company use `POST /present-proof/{pres-ex-id}/verify-presentation` to see Alice’s proof presentation.
 
 # References
