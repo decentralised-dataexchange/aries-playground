@@ -11,7 +11,7 @@ services:
       - aries-playground-nw
 
   test-center.localhost:
-    image: georgejpadayatti/aries-cloudagent:0.5.3
+    image: georgejpadayatti/aries-cloudagent:0.5.4
     command: /bin/bash -c "./startup.sh"
     container_name: test-center.localhost
     ports:
@@ -35,7 +35,7 @@ services:
       - aries-playground-nw
 
   data4Life-user.localhost:
-    image: georgejpadayatti/aries-cloudagent:0.5.3
+    image: georgejpadayatti/aries-cloudagent:0.5.4
     command: /bin/bash -c "./startup.sh"
     container_name: data4Life-user.localhost
     ports:
@@ -59,7 +59,7 @@ services:
       - aries-playground-nw
 
   travel-company.localhost:
-    image: georgejpadayatti/aries-cloudagent:0.5.3
+    image: georgejpadayatti/aries-cloudagent:0.5.4
     command: /bin/bash -c "./startup.sh"
     container_name: travel-company.localhost
     ports:
