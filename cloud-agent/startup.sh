@@ -11,4 +11,5 @@ aca-py start \
     --genesis-url $GENESIS_URL \
     --wallet-type indy \
     --wallet-name $AGENT_NAME \
-    --webhook-url $WEBHOOK_URL
+    --webhook-url $WEBHOOK_URL \
+    --wallet-key qwerty123
