@@ -325,7 +325,8 @@ After the secured connection is established between the two agents, the Travel C
 	       }
 	     },
 	     "requested_predicates": {}
-	    }
+	     }
+		}  
    
    Using the requested_predicates, you can do some assertions, example, the testDate shall be less than 2 days from today. 
    
