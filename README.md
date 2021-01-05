@@ -32,3 +32,8 @@ The startup.sh file inside cloud-agent folder contains the `aca-py` startup comm
 #### Todo
 
 1. Providing a web interface for webhook event interceptor
+
+#### Resources
+
+1. Docker images used in the aries-playground project is publicly available at https://hub.docker.com/u/igrantio
+2. Dockerfile for building the docker image for aries-cloudagent-python with operator capabilities is available at https://github.com/decentralised-dataexchange/aries-cloudagent-python/blob/wip/igrantio-operator/docker/Dockerfile.scratch
