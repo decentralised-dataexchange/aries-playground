@@ -11,7 +11,7 @@ services:
       - aries-playground-nw
 
   test-center.localhost:
-    image: georgejpadayatti/aries-cloudagent:0.5.4
+    image: igrantio/aries-cloudagent:0.5.6_v0.1
     command: /bin/bash -c "./startup.sh"
     container_name: test-center.localhost
     ports:
@@ -27,7 +27,7 @@ services:
       - aries-playground-nw
 
   test-center.webhook:
-    image: georgejpadayatti/aries-webhook-interceptor:0.1
+    image: igrantio/aries-webhook-interceptor:0.1
     container_name: test-center.webhook
     ports:
       - 8081:8080
@@ -35,7 +35,7 @@ services:
       - aries-playground-nw
 
   data4Life-user.localhost:
-    image: georgejpadayatti/aries-cloudagent:0.5.4
+    image: igrantio/aries-cloudagent:0.5.6_v0.1
     command: /bin/bash -c "./startup.sh"
     container_name: data4Life-user.localhost
     ports:
@@ -51,7 +51,7 @@ services:
       - aries-playground-nw
 
   data4Life-user.webhook:
-    image: georgejpadayatti/aries-webhook-interceptor:0.1
+    image: igrantio/aries-webhook-interceptor:0.1
     container_name: data4Life-user.webhook
     ports:
       - 8082:8080
@@ -59,7 +59,7 @@ services:
       - aries-playground-nw
 
   travel-company.localhost:
-    image: georgejpadayatti/aries-cloudagent:0.5.4
+    image: igrantio/aries-cloudagent:0.5.6_v0.1
     command: /bin/bash -c "./startup.sh"
     container_name: travel-company.localhost
     ports:
@@ -75,7 +75,7 @@ services:
       - aries-playground-nw
 
   travel-company.webhook:
-    image: georgejpadayatti/aries-webhook-interceptor:0.1
+    image: igrantio/aries-webhook-interceptor:0.1
     container_name: travel-company.webhook
     ports:
       - 8083:8080
