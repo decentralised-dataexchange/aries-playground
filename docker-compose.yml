@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   nginx:
     image: nginx
@@ -11,7 +11,7 @@ services:
       - aries-playground-nw
 
   test-center.localhost:
-    image: igrantio/aries-cloudagent:0.5.6_v0.1
+    image: igrantio/aries-cloudagent:0.5.6_v10_dx_fix
     command: /bin/bash -c "./startup.sh"
     container_name: test-center.localhost
     ports:
@@ -35,7 +35,7 @@ services:
       - aries-playground-nw
 
   data4Life-user.localhost:
-    image: igrantio/aries-cloudagent:0.5.6_v0.1
+    image: igrantio/aries-cloudagent:0.5.6_v10_dx_fix
     command: /bin/bash -c "./startup.sh"
     container_name: data4Life-user.localhost
     ports:
@@ -59,7 +59,7 @@ services:
       - aries-playground-nw
 
   travel-company.localhost:
-    image: igrantio/aries-cloudagent:0.5.6_v0.1
+    image: igrantio/aries-cloudagent:0.5.6_v10_dx_fix
     command: /bin/bash -c "./startup.sh"
     container_name: travel-company.localhost
     ports:
