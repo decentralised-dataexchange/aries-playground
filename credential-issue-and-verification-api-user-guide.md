@@ -1,8 +1,6 @@
 # Credential Issue and Verification API User Guide
 ## Table of Contents
 
-- [Credential Issue and Verification API User Guide](#credential-issue-and-verification-api-user-guide)
-	- [Table of Contents](#table-of-contents)
 - [Introduction](#introduction)
 - [Reference system](#reference-system)
 - [Work flow](#work-flow)
