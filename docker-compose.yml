@@ -1,5 +1,19 @@
 version: "3"
 services:
+  apts:
+    container_name: apts
+    image: apts
+    # The following options are useful when running 'protocoltest' below:
+    #    -v: prints the name of each test as it is run; otherwise, printed more concisely
+    #    -x: stop after the first test failure; otherwise, runs all tests
+    #    --capture=tee-sys: print stdout/stderr to screen for all tests; otherwise, only prints for failed tests
+    command: protocoltest -vx
+    build:
+      context: apts
+    volumes:
+      - ./apts/src/aut.py:/aries-protocol-test-suite/aut.py
+    networks:
+      - aries-playground-nw
   nginx:
     image: nginx
     command: /bin/bash -c "envsubst \"`env | awk -F = '{printf \" $$%s\", $$1}'`\" < /etc/nginx/conf.d/acapy.template > /etc/nginx/conf.d/acapy.conf && exec nginx -g 'daemon off;'"
@@ -9,7 +23,6 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d
     networks:
       - aries-playground-nw
-
   test-center.localhost:
     image: igrantio/aries-cloudagent:0.5.6_v10_dx_fix
     command: /bin/bash -c "./startup.sh"
@@ -25,7 +38,6 @@ services:
       - ./cloud-agent/startup.sh:/home/indy/startup.sh
     networks:
       - aries-playground-nw
-
   test-center.webhook:
     image: igrantio/aries-webhook-interceptor:0.1
     container_name: test-center.webhook
@@ -33,7 +45,6 @@ services:
       - 8081:8080
     networks:
       - aries-playground-nw
-
   data4Life-user.localhost:
     image: igrantio/aries-cloudagent:0.5.6_v10_dx_fix
     command: /bin/bash -c "./startup.sh"
@@ -49,7 +60,6 @@ services:
       - ./cloud-agent/startup.sh:/home/indy/startup.sh
     networks:
       - aries-playground-nw
-
   data4Life-user.webhook:
     image: igrantio/aries-webhook-interceptor:0.1
     container_name: data4Life-user.webhook
@@ -57,7 +67,6 @@ services:
       - 8082:8080
     networks:
       - aries-playground-nw
-
   travel-company.localhost:
     image: igrantio/aries-cloudagent:0.5.6_v10_dx_fix
     command: /bin/bash -c "./startup.sh"
@@ -73,7 +82,6 @@ services:
       - ./cloud-agent/startup.sh:/home/indy/startup.sh
     networks:
       - aries-playground-nw
-
   travel-company.webhook:
     image: igrantio/aries-webhook-interceptor:0.1
     container_name: travel-company.webhook
@@ -81,7 +89,6 @@ services:
       - 8083:8080
     networks:
       - aries-playground-nw
-
 networks:
   aries-playground-nw:
     external: true
