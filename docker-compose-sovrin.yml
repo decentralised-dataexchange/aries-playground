@@ -11,18 +11,21 @@ services:
       - aries-playground-nw
 
   test-center.localhost:
-    image: igrantio/aries-cloudagent:0.5.6_v10_dx_fix
+    image: igrantio/aries-cloudagent:0.5.6_v14_dx_fix
     command: /bin/bash -c "./startup.sh"
     container_name: test-center.localhost
     ports:
       - 8051:8001
+      - 8071:8071
     environment:
       AGENT_NAME: Test-Center
-      ACAPY_ENDPOINT: http://test-center.localhost
+      # ACAPY_ENDPOINT: http://test-center.localhost
+      ACAPY_ENDPOINT: https://058b47a0c8f4.ngrok.io
+
       GENESIS_URL: https://raw.githubusercontent.com/sovrin-foundation/sovrin/master/sovrin/pool_transactions_sandbox_genesis
       WEBHOOK_URL: http://test-center.webhook:8080
     volumes:
-      - ./cloud-agent/startup.sh:/home/indy/startup.sh
+      - ./cloud-agent/startup_ngrok.sh:/home/indy/startup.sh
     networks:
       - aries-playground-nw
 
