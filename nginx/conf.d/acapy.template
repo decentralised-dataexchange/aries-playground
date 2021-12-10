@@ -1,10 +1,10 @@
 server {
     listen 80;
     listen [::]:80;
-    server_name test-center.localhost;
+    server_name travelcompany.localhost;
 
     location / {
-        proxy_pass http://test-center.localhost;
+        proxy_pass http://travelcompany.localhost;
 
         add_header 'Access-Control-Allow-Origin' '*';
         add_header 'Access-Control-Allow-Credentials' 'true';
@@ -16,10 +16,10 @@ server {
 server {
     listen 80;
     listen [::]:80;
-    server_name test-center.swagger.localhost;
+    server_name travelcompany.swagger.localhost;
 
     location / {
-        proxy_pass http://test-center.localhost:8001;
+        proxy_pass http://travelcompany.localhost:8001;
 
         add_header 'Access-Control-Allow-Origin' '*';
         add_header 'Access-Control-Allow-Credentials' 'true';
@@ -31,10 +31,10 @@ server {
 server {
     listen 80;
     listen [::]:80;
-    server_name data4life-user.localhost;
+    server_name individual.localhost;
 
     location / {
-        proxy_pass http://data4life-user.localhost;
+        proxy_pass http://individual.localhost;
 
         add_header 'Access-Control-Allow-Origin' '*';
         add_header 'Access-Control-Allow-Credentials' 'true';
@@ -46,10 +46,10 @@ server {
 server {
     listen 80;
     listen [::]:80;
-    server_name data4life-user.swagger.localhost;
+    server_name individual.swagger.localhost;
 
     location / {
-        proxy_pass http://data4life-user.localhost:8001;
+        proxy_pass http://individual.localhost:8001;
 
         add_header 'Access-Control-Allow-Origin' '*';
         add_header 'Access-Control-Allow-Credentials' 'true';
@@ -61,10 +61,10 @@ server {
 server {
     listen 80;
     listen [::]:80;
-    server_name travel-company.localhost;
+    server_name didregistry.localhost;
 
     location / {
-        proxy_pass http://travel-company.localhost;
+        proxy_pass http://didregistry.localhost;
 
         add_header 'Access-Control-Allow-Origin' '*';
         add_header 'Access-Control-Allow-Credentials' 'true';
@@ -76,10 +76,40 @@ server {
 server {
     listen 80;
     listen [::]:80;
-    server_name travel-company.swagger.localhost;
+    server_name didregistry.swagger.localhost;
 
     location / {
-        proxy_pass http://travel-company.localhost:8001;
+        proxy_pass http://didregistry.localhost:8001;
+
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Credentials' 'true';
+        add_header 'Access-Control-Allow-Headers' '*';
+        add_header 'Access-Control-Allow-Methods' 'GET,POST,OPTIONS,PUT,DELETE,PATCH';
+    }
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name auditor.localhost;
+
+    location / {
+        proxy_pass http://auditor.localhost;
+
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Credentials' 'true';
+        add_header 'Access-Control-Allow-Headers' '*';
+        add_header 'Access-Control-Allow-Methods' 'GET,POST,OPTIONS,PUT,DELETE,PATCH';
+    }
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name auditor.swagger.localhost;
+
+    location / {
+        proxy_pass http://auditor.localhost:8001;
 
         add_header 'Access-Control-Allow-Origin' '*';
         add_header 'Access-Control-Allow-Credentials' 'true';
