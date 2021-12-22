@@ -9,7 +9,8 @@
   <a href="#about">About</a> •
   <a href="#release-status">Release Status</a> •
   <a href="#contributing">Contributing</a> •
-  <a href="#licensing">Licensing</a>
+  <a href="#licensing">Licensing</a> •
+  <a href="https://github.com/decentralised-dataexchange/aries-playground/blob/master/automated-data-agreement">Aries playground for automated data agreements</a> 
 </p>
 
 # About 

@@ -1,0 +1,71 @@
+version: "3"
+services:
+  nginx:
+    image: nginx
+    command: /bin/bash -c "exec nginx -g 'daemon off;'"
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/ada-conf.d:/etc/nginx/conf.d
+    networks:
+      - aries-playground-nw
+  testcenter.localhost:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.x86
+    command: "start -it http 0.0.0.0 80 -ot http -e http://testcenter.localhost --label Test-Center --admin 0.0.0.0 8001 --admin-insecure-mode --auto-accept-requests --auto-ping-connection --auto-respond-credential-proposal --auto-respond-credential-offer --auto-respond-credential-request --auto-store-credential --auto-respond-presentation-proposal --auto-respond-presentation-request --auto-verify-presentation --genesis-url https://indy.igrant.io/genesis --wallet-type indy --wallet-name Test-Center --log-level debug --wallet-key qwerty123 --plugin 'mydata_did'"
+    container_name: testcenter.localhost
+    networks:
+      - aries-playground-nw
+    volumes:
+      - testcenter-data:/home/indy/.indy_client
+  travelcompany.localhost:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.x86
+    command: "start -it http 0.0.0.0 80 -ot http -e http://travelcompany.localhost --label Travel-Company --admin 0.0.0.0 8001 --admin-insecure-mode --auto-accept-requests --auto-ping-connection --auto-respond-credential-proposal --auto-respond-credential-offer --auto-respond-credential-request --auto-store-credential --auto-respond-presentation-proposal --auto-respond-presentation-request --auto-verify-presentation --genesis-url https://indy.igrant.io/genesis --wallet-type indy --wallet-name Travel-Company --log-level debug --wallet-key qwerty123 --plugin 'mydata_did'"
+    container_name: travelcompany.localhost
+    networks:
+      - aries-playground-nw
+    volumes:
+      - travelcompany-data:/home/indy/.indy_client
+  individual.localhost:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.x86
+    command: "start -it http 0.0.0.0 80 -ot http -e http://individual.localhost --label Individual --admin 0.0.0.0 8001 --admin-insecure-mode --auto-accept-requests --auto-ping-connection --auto-respond-credential-proposal --auto-respond-credential-request --auto-store-credential --auto-respond-presentation-proposal --auto-verify-presentation --genesis-url https://indy.igrant.io/genesis --wallet-type indy --wallet-name Individual --log-level debug --wallet-key qwerty123 --plugin 'mydata_did'"
+    container_name: individual.localhost
+    networks:
+      - aries-playground-nw
+    volumes:
+      - individual-data:/home/indy/.indy_client
+  didregistry.localhost:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.x86
+    command: "start -it http 0.0.0.0 80 -ot http -e http://didregistry.localhost --label DID-Registry --admin 0.0.0.0 8001 --admin-insecure-mode --auto-accept-requests --auto-ping-connection --auto-respond-credential-proposal --auto-respond-credential-offer --auto-respond-credential-request --auto-store-credential --auto-respond-presentation-proposal --auto-respond-presentation-request --auto-verify-presentation --genesis-url https://indy.igrant.io/genesis --wallet-type indy --wallet-name DID-Registry --log-level debug --wallet-key qwerty123 --plugin 'mydata_did'"
+    container_name: didregistry.localhost
+    networks:
+      - aries-playground-nw
+    volumes:
+      - didregistry-data:/home/indy/.indy_client
+  auditor.localhost:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.x86
+    command: "start -it http 0.0.0.0 80 -ot http -e http://auditor.localhost --label Auditor --admin 0.0.0.0 8001 --admin-insecure-mode --auto-accept-requests --auto-ping-connection --auto-respond-credential-proposal --auto-respond-credential-offer --auto-respond-credential-request --auto-store-credential --auto-respond-presentation-proposal --auto-respond-presentation-request --auto-verify-presentation --genesis-url https://indy.igrant.io/genesis --wallet-type indy --wallet-name Auditor --log-level debug --wallet-key qwerty123 --plugin 'mydata_did'"
+    container_name: auditor.localhost
+    networks:
+      - aries-playground-nw
+    volumes:
+      - auditor-data:/home/indy/.indy_client
+networks:
+  aries-playground-nw:
+    external: true
+
+volumes:
+  travelcompany-data:
+  individual-data:
+  didregistry-data:
+  auditor-data:
+  testcenter-data:

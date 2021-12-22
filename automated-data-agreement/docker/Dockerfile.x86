@@ -1,0 +1,9 @@
+FROM bcgovimages/von-image:py36-1.15-0
+
+USER root
+
+RUN pip install --no-cache-dir aries-cloudagent==0.5.6
+
+RUN pip install --no-cache-dir git+https://github.com/decentralised-dataexchange/acapy-mydata-did-protocol.git@master
+
+ENTRYPOINT ["/bin/bash", "-c", "aca-py \"$@\"", "--"]
