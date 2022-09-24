@@ -1,0 +1,66 @@
+version: "3"
+services:
+  nginx:
+    platform: linux/amd64
+    image: nginx
+    command: /bin/bash -c "exec nginx -g 'daemon off;'"
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/dexa-conf.d:/etc/nginx/conf.d
+    networks:
+      - aries-playground-nw
+
+  credit-reporting-agency.localhost:
+    platform: linux/amd64
+    image: igrantio/dexa-sdk:0.1.9
+    command: "-- --arg-file ./startup/dus.yaml"
+    container_name: credit-reporting-agency.localhost
+    networks:
+      - aries-playground-nw
+    volumes:
+      - ./docker/startup:/code/startup
+      - credit-reporting-agency-data:/home/indy/.indy_client
+
+  abc-bank.localhost:
+    platform: linux/amd64
+    image: igrantio/dexa-sdk:0.1.9
+    command: "-- --arg-file ./startup/ds.yaml"
+    container_name: abc-bank.localhost
+    networks:
+      - aries-playground-nw
+    volumes:
+      - ./docker/startup:/code/startup
+      - abc-bank-data:/home/indy/.indy_client
+
+  finance-marketplace.localhost:
+    platform: linux/amd64
+    image: igrantio/dexa-sdk:0.1.9
+    command: "-- --arg-file ./startup/dm.yaml"
+    container_name: finance-marketplace.localhost
+    networks:
+      - aries-playground-nw
+    volumes:
+      - ./docker/startup:/code/startup
+      - finance-marketplace-data:/home/indy/.indy_client
+
+  individual.localhost:
+    platform: linux/amd64
+    image: igrantio/dexa-sdk:0.1.9
+    command: "-- --arg-file ./startup/individual.yaml"
+    container_name: individual.localhost
+    networks:
+      - aries-playground-nw
+    volumes:
+      - ./docker/startup:/code/startup
+      - individual-data:/home/indy/.indy_client
+
+networks:
+  aries-playground-nw:
+    external: true
+
+volumes:
+  credit-reporting-agency-data:
+  abc-bank-data:
+  finance-marketplace-data:
+  individual-data:

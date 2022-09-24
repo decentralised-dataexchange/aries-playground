@@ -1,0 +1,41 @@
+inbound-transport:
+  - [http, 0.0.0.0, 80]
+outbound-transport: http
+endpoint: "http://individual.localhost"
+label: "Individual"
+admin:
+  - 0.0.0.0
+  - 8001
+admin-insecure-mode: true
+auto-accept-requests: true
+auto-ping-connection: true
+auto-respond-credential-proposal: true
+auto-respond-credential-offer: true
+auto-respond-credential-request: true
+auto-store-credential: true
+auto-respond-presentation-proposal: true
+auto-respond-presentation-request: true
+auto-verify-presentation: true
+genesis-url: "https://indy.igrant.io/genesis"
+wallet-type: "indy"
+wallet-name: "Individual"
+wallet-key: "Individual"
+log-level: "info"
+webhook-url: "http://localhost:8001/webhooks"
+public-invites: true
+plugin:
+  - "mydata_did"
+  - "dexa_protocol"
+eth-node-rpc: ""
+intermediary-eth-private-key: ""
+org-eth-private-key: ""
+contract-address: ""
+firebase-web-api-key: ""
+firebase-domain-uri-prefix: ""
+firebase-android-package-name: ""
+firebase-ios-bundle-id: ""
+firebase-ios-appstore-id: ""
+igrantio-org-id: ""
+igrantio-org-api-key: ""
+igrantio-org-api-key-secret: ""
+igrantio-endpoint-url: ""
