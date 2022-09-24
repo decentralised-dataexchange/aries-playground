@@ -1,4 +1,4 @@
-# Data Agreement enabled Credential Issue and Verification API User Guide
+# Data Exchange Agreements (DEXA) User Guide
 
 # 1.0 Introduction
 
