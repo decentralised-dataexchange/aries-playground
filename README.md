@@ -10,10 +10,9 @@
   <a href="#release-status">Release Status</a> •
   <a href="#contributing">Contributing</a> •
   <a href="#licensing">Licensing</a> •
-  <a href="https://github.com/decentralised-dataexchange/aries-playground/blob/master/automated-data-agreement">Aries playground for automated data agreements</a> 
 </p>
 
-# About 
+### About 
 
 The Aries playground environment is setup for developers to perform API call flows during a verified data exchange process using Hyperledger Indy as the distributed ledger registry and Hyperldger Aries agent as the client application.
 
@@ -21,12 +20,17 @@ For developers to try out the Aries agent, iGrant.io Aries agents are pointed to
 
 More info at: https://docs.igrant.io/ssi/ssi-apg
 
-# Developer Instructions
+### Playgrounds
+
+1. <a href="https://github.com/decentralised-dataexchange/aries-playground/blob/master/automated-data-agreement">Aries playground for automated data agreements</a>
+2. <a href="https://github.com/decentralised-dataexchange/aries-playground/blob/master/dexa">DEXA</a> 
+
+### Developer Instructions
 
 *Notes* : By default the agents are pointed to indy ledger hosted at https://indy.igrant.io 
 You can always change this to your ledger of choice by updating *GENESIS_URL* environment variable in docker-compose.yml file
 
-## Install [aries](https://github.com/darkchylde/aries-playground) ecosystem
+#### Install [aries](https://github.com/darkchylde/aries-playground) ecosystem
 1. Clone repository
 2. Create a docker network `docker network create aries-playground-nw` (If not already created)
 3. Run `docker-compose up`, it will serve:
@@ -40,7 +44,7 @@ You can always change this to your ledger of choice by updating *GENESIS_URL* en
     * data4life-user.webhook (For capturing webhook events)
     * travel-company.webhook (For capturing webhook events)
 
-## Webhooks
+#### Webhooks
 
 A webhook interceptor is provided to debug the webhook events. It can be accessed by tailing demo.log file.
 
@@ -50,28 +54,25 @@ A webhook interceptor is provided to debug the webhook events. It can be accesse
 
 Please refer the [user guide executing on the credential issue and verification](https://github.com/decentralised-dataexchange/aries-playground/blob/master/credential-issue-and-verification-api-user-guide.md) for the above reference system.
 
-## Configuring the agent startup
+#### Configuring the agent startup
 
 The startup.sh file inside cloud-agent folder contains the `aca-py` startup command. You can modify it according to your development needs.
 
-## Todo
 
-1. Provide a web interface for webhook event interceptor
-
-## Resources
+### Resources
 
 1. Docker images used in the aries-playground project is publicly available at https://hub.docker.com/u/igrantio
 2. Dockerfile for building the docker image for aries-cloudagent-python with operator capabilities is available at https://github.com/decentralised-dataexchange/aries-cloudagent-python/blob/wip/igrantio-operator/docker/Dockerfile.scratch
 
-## Release Status
+### Release Status
 
 Released
 
-## Contributing
+### Contributing
 
 Feel free to improve the plugin and send us a pull request. If you found any problems, please create an issue in this repo.
 
-## Licensing
+### Licensing
 Copyright (c) 2021-2023 LCubed AB (iGrant.io), Sweden
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
