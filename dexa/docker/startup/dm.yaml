@@ -1,8 +1,8 @@
 inbound-transport:
   - [http, 0.0.0.0, 80]
 outbound-transport: http
-endpoint: "http://individual.localhost"
-label: "Individual"
+endpoint: "http://finance-marketplace.localhost"
+label: "Finance Marketplace"
 admin:
   - 0.0.0.0
   - 8001
@@ -18,24 +18,15 @@ auto-respond-presentation-request: true
 auto-verify-presentation: true
 genesis-url: "https://indy.igrant.io/genesis"
 wallet-type: "indy"
-wallet-name: "Individual"
-wallet-key: "Individual"
+wallet-name: "Finance Marketplace"
+wallet-key: "Finance Marketplace"
 log-level: "info"
 webhook-url: "http://localhost:8001/webhooks"
 public-invites: true
 plugin:
   - "mydata_did"
   - "dexa_protocol"
-eth-node-rpc: ""
-intermediary-eth-private-key: ""
-org-eth-private-key: ""
-contract-address: ""
-firebase-web-api-key: ""
-firebase-domain-uri-prefix: ""
-firebase-android-package-name: ""
-firebase-ios-bundle-id: ""
-firebase-ios-appstore-id: ""
-igrantio-org-id: ""
-igrantio-org-api-key: ""
-igrantio-org-api-key-secret: ""
-igrantio-endpoint-url: ""
+eth-node-rpc: "https://sepolia.infura.io/v3/41a58400151545dd93d2815959d85221"
+intermediary-eth-private-key: "655209c48d2ce9250e74cf5e2a35ea4e1e350060ec1520e66ff85b95849ff03d"
+org-eth-private-key: "2d8a019677512386c2f9739b1d7348d355b8906a7433a770e3d33391ddcfb5e3"
+contract-address: "0x4700b9C4A340959AABb0da3FfCeb24123EE9FED6"

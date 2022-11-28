@@ -1,8 +1,8 @@
 inbound-transport:
   - [http, 0.0.0.0, 80]
 outbound-transport: http
-endpoint: "http://abc-bank.localhost"
-label: "ABC Bank"
+endpoint: "http://individual.localhost"
+label: "Individual"
 admin:
   - 0.0.0.0
   - 8001
@@ -18,24 +18,15 @@ auto-respond-presentation-request: true
 auto-verify-presentation: true
 genesis-url: "https://indy.igrant.io/genesis"
 wallet-type: "indy"
-wallet-name: "ABC Bank"
-wallet-key: "ABC Bank"
+wallet-name: "Individual"
+wallet-key: "Individual"
 log-level: "info"
 webhook-url: "http://localhost:8001/webhooks"
 public-invites: true
 plugin:
   - "mydata_did"
   - "dexa_protocol"
-eth-node-rpc: ""
-intermediary-eth-private-key: ""
-org-eth-private-key: ""
-contract-address: ""
-firebase-web-api-key: ""
-firebase-domain-uri-prefix: ""
-firebase-android-package-name: ""
-firebase-ios-bundle-id: ""
-firebase-ios-appstore-id: ""
-igrantio-org-id: ""
-igrantio-org-api-key: ""
-igrantio-org-api-key-secret: ""
-igrantio-endpoint-url: ""
+eth-node-rpc: "https://sepolia.infura.io/v3/41a58400151545dd93d2815959d85221"
+intermediary-eth-private-key: "655209c48d2ce9250e74cf5e2a35ea4e1e350060ec1520e66ff85b95849ff03d"
+org-eth-private-key: "655209c48d2ce9250e74cf5e2a35ea4e1e350060ec1520e66ff85b95849ff03d"
+contract-address: "0x4700b9C4A340959AABb0da3FfCeb24123EE9FED6"
