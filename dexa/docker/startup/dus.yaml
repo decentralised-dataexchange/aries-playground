@@ -26,7 +26,7 @@ public-invites: true
 plugin:
   - "mydata_did"
   - "dexa_protocol"
-eth-node-rpc: "https://sepolia.infura.io/v3/41a58400151545dd93d2815959d85221"
-intermediary-eth-private-key: "655209c48d2ce9250e74cf5e2a35ea4e1e350060ec1520e66ff85b95849ff03d"
-org-eth-private-key: "60ef8da43bf9e825183cf7dbd0c0534dadebab2ec255c05b02dc60464bc18418"
-contract-address: "0x4700b9C4A340959AABb0da3FfCeb24123EE9FED6"
+eth-node-rpc: "https://ethereum-rpc.igrant.io"
+intermediary-eth-private-key: "0x6f1313062db38875fb01ee52682cbf6a8420e92bfbc578c5d4fdc0a32c50266f"
+org-eth-private-key: "0xc784a885f7e4045e862e35dacbc05861b9b93582d2f992b63004b759094953df"
+contract-address: "0xd4862070ab9f9E05dc793277E1B93705c878a501"
