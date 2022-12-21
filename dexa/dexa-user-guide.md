@@ -9,9 +9,11 @@
   - [3.0 Use case Scenario](#30-use-case-scenario)
   - [4.0 Pre-requisite workflows](#40-pre-requisite-workflows)
     - [4.1 ABC Bank](#41-abc-bank)
-      - [4.1.1 Establish connection between ABC Bank and Finance Marketplace](#411-establish-connection-between-abc-bank-and-finance-marketplace)
+      - [4.1.1 Configure controller details](#411-configure-controller-details)
+      - [4.1.2 Establish connection between ABC Bank and Finance Marketplace](#412-establish-connection-between-abc-bank-and-finance-marketplace)
     - [4.2 Credit Reporting Agency](#42-credit-reporting-agency)
-      - [4.2.1 Establish connection between Credit Reporting Agency and Finance Marketplace](#421-establish-connection-between-credit-reporting-agency-and-finance-marketplace)
+      - [4.2.1 Configure controller details](#421-configure-controller-details)
+      - [4.2.2 Establish connection between Credit Reporting Agency and Finance Marketplace](#422-establish-connection-between-credit-reporting-agency-and-finance-marketplace)
     - [4.3 Individual](#43-individual)
       - [4.3.1 Establish connection between Individual and ABC Bank](#431-establish-connection-between-individual-and-abc-bank)
   - [5.0 ABC Bank creates third-party data sharing data agreement to Individual](#50-abc-bank-creates-third-party-data-sharing-data-agreement-to-individual)
@@ -56,7 +58,45 @@ Individual is a customer of ABC Bank. A Credit Reporting Agency determines the c
 
 #### 4.1 ABC Bank
 
-##### 4.1.1 Establish connection between ABC Bank and Finance Marketplace
+##### 4.1.1 Configure controller details
+
+Perform [**HTTP POST** http://abc-bank.swagger.localhost/v1/data-controller](http://abc-bank.swagger.localhost/api/doc#/Data%20Controller/post_v1_data_controller).
+
+Sample request body is give below.
+
+```json
+{
+  "cover_image_url": "string",
+  "description": "string",
+  "eula_url": "string",
+  "location": "string",
+  "logo_image_url": "string",
+  "organisation_did": "string",
+  "organisation_name": "string",
+  "organisation_type": "string",
+  "policy_url": "string"
+}
+```
+
+Sample response is given below.
+
+```json
+{
+  "description": "string",
+  "created_at": "2022-12-21 07:15:40.947912Z",
+  "logo_image_url": "string",
+  "policy_url": "string",
+  "eula_url": "string",
+  "cover_image_url": "string",
+  "organisation_name": "string",
+  "updated_at": "2022-12-21 07:15:40.947912Z",
+  "location": "string",
+  "organisation_did": "did:sov:2GJf6YGsdSjLWxzK2xnYBK",
+  "organisation_type": "string"
+}
+```
+
+##### 4.1.2 Establish connection between ABC Bank and Finance Marketplace
 
 1. Fetch the invitation from well-known endpoint hosted at Finance Marketplace.
 
@@ -117,7 +157,45 @@ Sample response is given below.
 
 #### 4.2 Credit Reporting Agency
 
-##### 4.2.1 Establish connection between Credit Reporting Agency and Finance Marketplace
+##### 4.2.1 Configure controller details
+
+Perform [**HTTP POST** http://credit-reporting-agency.swagger.localhost/v1/data-controller](http://credit-reporting-agency.swagger.localhost/api/doc#/Data%20Controller/post_v1_data_controller).
+
+Sample request body is give below.
+
+```json
+{
+  "cover_image_url": "string",
+  "description": "string",
+  "eula_url": "string",
+  "location": "string",
+  "logo_image_url": "string",
+  "organisation_did": "string",
+  "organisation_name": "string",
+  "organisation_type": "string",
+  "policy_url": "string"
+}
+```
+
+Sample response is given below.
+
+```json
+{
+  "organisation_name": "string",
+  "location": "string",
+  "organisation_type": "string",
+  "cover_image_url": "string",
+  "eula_url": "string",
+  "organisation_did": "did:sov:KNBJrWredzoxPQ385Yzg47",
+  "created_at": "2022-12-21 07:22:37.305176Z",
+  "description": "string",
+  "updated_at": "2022-12-21 07:22:37.305176Z",
+  "policy_url": "string",
+  "logo_image_url": "string"
+}
+```
+
+##### 4.2.2 Establish connection between Credit Reporting Agency and Finance Marketplace
 
 1. Fetch the invitation from well-known endpoint hosted at Finance Marketplace.
 
