@@ -30,3 +30,13 @@ eth-node-rpc: "https://ethereum-rpc.igrant.io"
 intermediary-eth-private-key: "0x6f1313062db38875fb01ee52682cbf6a8420e92bfbc578c5d4fdc0a32c50266f"
 org-eth-private-key: "0xc784a885f7e4045e862e35dacbc05861b9b93582d2f992b63004b759094953df"
 contract-address: "0xd4862070ab9f9E05dc793277E1B93705c878a501"
+igrantio-authentication: false
+igrantio-endpoint-url: https://staging-api.igrant.io
+firebase-web-api-key: "nil"
+firebase-domain-uri-prefix: "nil"
+firebase-android-package-name: "nil"
+firebase-ios-bundle-id: "nil"
+firebase-ios-appstore-id: "nil"
+igrantio-org-id: "6325dcb47b30890001899c81"
+igrantio-org-api-key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2MzM0NTdjZTAxYTI5YzAwMDFmYjAzZTMiLCJvcmdpZCI6IiIsImVudiI6IiIsImV4cCI6MTY5NTQ4MTAwN30.0SCwQvD7a2tHfoFJCqg_JCEzjsPAtn5yOTjSI5U1WtU
+igrantio-org-api-key-secret: "nil"
